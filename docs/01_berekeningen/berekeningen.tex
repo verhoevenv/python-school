@@ -25,6 +25,7 @@
     {\textquoteright}
 
 \newenvironment{task}{\smallpencil}{}
+\newenvironment{hard-task}{\begin{task} {\large \Lightning}}{\end{task}}
 
 \newcommand{\optional}{\Info \thinspace}
 
@@ -178,19 +179,28 @@ Kan je de vorige programma's werkende krijgen met datatype-omzettingen?
 
 \section{Oefeningen}
 \begin{task}
-Schrijf een script dat de geboortedatum van de gebruiker vraagt en de leeftijd van de gebruiker in dagen berekent. Het is voorlopig het eenvoudigst als je de geboortedatum met drie input-stappen opvraagt: de dag, de maand en het jaar.
+Schrijf een programma om de oppervlakte van een cirkel te berekenen, gegeven de straal. Ken je nog andere formule's die je in programmavorm zou kunnen gieten?
+\end{task}
+
+\begin{task}
+Schrijf een script dat de geboortedatum van de gebruiker vraagt en de leeftijd van de gebruiker in dagen berekent. Het is voorlopig het eenvoudigst als je de geboortedatum met drie input-stappen opvraagt: de dag, de maand en het jaar. Het is ook het makkelijkst als je de datum van vandaag 'hardcode', dus rechtstreeks in het programma stopt.
 \end{task}
 
 \begin{task}
 Kan je de leeftijd in seconden teruggeven?
 \end{task}
 
-\begin{task}
-Vergelijk de antwoorden die je programma teruggeeft met een website met een soortgelijke berekening. Zijn er verschillen? Zo ja, vanwaar komen de verschillen? Kan je deze oplossen? Later komen we hier op terug!
-\end{task}
+\begin{hard-task}
+Vergelijk de antwoorden die je programma teruggeeft met een website met een soortgelijke berekening. Zijn er verschillen? Zo ja, vanwaar komen de verschillen? Kan je deze oplossen?
+\end{hard-task}
 
-\begin{task}
-Schrijf een programma om de oppervlakte van een cirkel te berekenen, gegeven de straal. Ken je nog andere formule's die je in programmavorm zou kunnen gieten?
-\end{task}
+\begin{hard-task}
+Wat is het nadeel van hardcoden? Wat is het voordeel van hardcoden? Je computer weet wat de datum vandaag is, en je kan deze ophalen en gebruiken voor berekeningen:
+\begin{python}
+from datetime import datetime
+print(datetime.now())
+print(datetime.now().day)
+\end{python}
+\end{hard-task}
 
 \end{document}
