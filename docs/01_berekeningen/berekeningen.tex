@@ -1,0 +1,196 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{textcomp}
+\usepackage{titling}
+\usepackage[dutch]{babel}
+\usepackage{csquotes}
+\usepackage{pythonhighlight}
+\usepackage{dingbat}
+\usepackage{marvosym}
+\usepackage{parskip}
+
+\author{Vincent Verhoeven}
+\title{Rekenen met Python}
+
+\setcounter{secnumdepth}{0}
+
+\DeclareQuoteStyle{dutch}
+    {\itshape\textquotedblleft}
+    [\textquotedblleft]
+    {\textquotedblright}
+    [0.05em]
+    {\textquoteleft}
+    {\textquoteright}
+
+\newenvironment{task}{\smallpencil}{}
+
+\newcommand{\optional}{\Info \thinspace}
+
+\begin{document}
+
+\section{Input en output}
+Een computerprogramma is maar nuttig als het met de buitenwereld in verbinding staat. Denk maar aan een webbrowser (Firefox, Chrome), een game (Minecraft, The Sims), maar ook computerprogramma's die hoofdzakelijk berekeningen doen (het getal $\pi$ tot miljoenen cijfers na de komma berekenen) moeten de resultaten van deze berekeningen uiteindelijk aan de wereld kenbaar maken.
+
+Input zijn die gegevens die binnenkomen in een programma, output is hetgeen dat weggaat uit een programma. Als afkorting gebruiken we vaak 'I/O' of 'IO'.
+
+\begin{task}
+Hoeveel voorbeelden van IO kan je bedenken? Welke zijn input, welke zijn output?
+\end{task}
+
+\subsection{De terminal}
+
+Een van de oudste, en daarom best ondersteunde en misschien wel eenvoudigst te programmeren vorm van IO is de interactieve terminal of console. De enige interactiemogelijkheden zijn via tekst: invoer via het toetsenbord en output via het scherm, in een sober venster.
+
+Het eenvoudigste Python-programma doet dan ook niet veel meer dan een boodschap tonen via de terminal:
+\begin{python}
+print("Hello world!")
+\end{python}
+We krijgen input van de gebruiker met de input-functie:
+\begin{python}
+naam = input("Wat is jouw naam? ")
+print(f"Dag {naam}!")
+\end{python}
+
+Het woord 'naam' in de code hierboven is een voorbeeld van een variabele. We gebruiken variabelen om waardes op te slaan om later te gebruiken in code.
+
+\begin{task}
+Wat gebeurt er als je de twee lijnen code van volgorde wisselt?
+\end{task}
+
+\begin{task}
+Het gelijkheidsteken ($=$) betekent in Python iets anders dan in rekenen. Wat is het verschil?
+\end{task}
+
+\begin{task}
+Waarom staat er een spatie na het vraagteken in de eerste lijn code? Hoe voelt het programma aan als je deze spatie weglaat? Het verschil tussen een werkend en een goed programma zit vaak in aandacht voor kleine details!
+\end{task}
+
+\begin{task}
+Waarom staat de 'f' in het print-commando? Wat gebeurt er als je die er niet zet?
+\end{task}
+
+
+\section{Rekenen met Python}
+Computers zijn in de eerste plaats uitstekende rekenmachines! Laat ons eens kijken. Tip: doe dit in een REPL of worksheet, dan hoef je niet telkens 'print' te typen!
+
+\begin{python}
+print(1+1)
+print(8 - 10)
+print(7*8)
+print(2**10)
+\end{python}
+
+Getallen die zeer groot of klein zijn (klein = kommagetal zeer dicht bij 0) kan je met de exponent-notatie voorstellen:
+\begin{python}
+print(1e10)
+print(15e-5)
+print(1.5e-4)
+print(2e20*2e-19)
+\end{python}
+
+\begin{task}
+Wat denk je dat volgende berekening teruggeeft?
+\end{task}
+\begin{python}
+print(5+2*3)
+\end{python}
+
+\begin{task}
+Wat is het verband tussen volgende drie operatoren?
+\end{task}
+\begin{python}
+print(7/3)
+print(7//3)
+print(7%3)
+\end{python}
+
+Een aantal functies die je minder vaak nodig hebt, kan je in de math-module vinden. Modules zijn een manier van Python om uitbreidingen op de programmeertaal te voorzien. Daar hebben we het later nog wel over, het belangrijkste nu is dat je de identifiers uit modules moet importeren voor je ze kan gebruiken, zoals in het voorbeeld hieronder.
+\begin{python}
+from math import sqrt, pi
+print(sqrt(2))
+print(pi)
+\end{python}
+
+\begin{task}
+Wat gebeurt er als je het importeren niet doet? Wat gebeurt er als je importeert nadat je de sqrt-functie gebruikt?
+\end{task}
+
+
+\subsection{\optional Gehele getallen, en floating-point getallen}
+Computers werken vaak met benaderingen! Python zal gehele getallen exact voorstellen zolang het kan, maar komma-getallen zijn erg vaak incorrect, en beperkt in waarde-bereik. Het voordeel van deze keuze is dat computers zeer snel kunnen rekenen met deze kommagetallen. Voorbeelden waar het mis gaat:
+\begin{python}
+print(0.1-0.1)
+print(0.1+0.1-0.1-0.1)
+print(0.1+0.1+0.1-0.1-0.1-0.1)
+
+print(2**10000)
+print(2.0**10000)
+print(2**10000/2)
+\end{python}
+Meestal hoef je hier niet te veel rekening mee te houden, maar tijdens het programmeren van games zie je deze effecten soms optreden. Bijvoorbeeld: een game waarbij Mario, als je op het pijltje naar rechts drukt, een snelheid van 0.1 km/u bijkrijgt, en als je op het pijltje naar links drukt, een snelheid van 0.1 km/u verliest. Het wordt snel onmogelijk om Mario nog exact stil te laten staan!
+
+\begin{task}
+Kan je een manier bedenken om dit probleem op te lossen?
+\end{task}
+
+\section{Datatypes}
+In Python kan je stukken tekst aan elkaar plakken:
+\begin{python}
+print("Stuk" + "jes")
+\end{python}
+en je kan getallen optellen:
+\begin{python}
+print(4 + 3)
+\end{python}
+Wat gebeurt er als je tekst en getallen optelt?
+\begin{python}
+pagina = 1
+aantal_paginas = 5
+percentage = pagina/aantal_paginas * 100
+print("Dit is pagina " + pagina + " van " + aantal_paginas + " (" + percentage + "%)")
+\end{python}
+Of gaat rekenen met tekst?
+\begin{python}
+geboortejaar = input("In welk jaar ben je geboren? ")
+leeftijd = 2019 - geboortejaar
+print(f"Je bent nu ongeveer {leeftijd} jaar oud!")
+\end{python}
+
+Elke waarde in Python heeft een type. De types die je al kent zijn str (van 'string', voor tekst), int (van 'integer', voor gehele getallen) en float (voor floating-point getallen). Je kan het type van een waarde opvragen met de type-functie:
+\begin{python}
+print(type("Tekst"))
+print(type(2019))
+\end{python}
+
+Programmeertalen gaan soms heel anders om met datatypes. In Javascript kan je bijvoorbeeld wel strings en getallen optellen, en in C\# moet je op voorhand aangeven welk datatype een variabele heeft.
+
+Gelukkig kan je waardes omzetten naar andere datatypes!
+\begin{python}
+print(int("10") + int("-1"))
+print(str(10) + str(-1))
+\end{python}
+
+\begin{task}
+Kan je de vorige programma's werkende krijgen met datatype-omzettingen?
+\end{task}
+
+\section{Oefeningen}
+\begin{task}
+Schrijf een script dat de geboortedatum van de gebruiker vraagt en de leeftijd van de gebruiker in dagen berekent. Het is voorlopig het eenvoudigst als je de geboortedatum met drie input-stappen opvraagt: de dag, de maand en het jaar.
+\end{task}
+
+\begin{task}
+Kan je de leeftijd in seconden teruggeven?
+\end{task}
+
+\begin{task}
+Vergelijk de antwoorden die je programma teruggeeft met een website met een soortgelijke berekening. Zijn er verschillen? Zo ja, vanwaar komen de verschillen? Kan je deze oplossen? Later komen we hier op terug!
+\end{task}
+
+\begin{task}
+Schrijf een programma om de oppervlakte van een cirkel te berekenen, gegeven de straal. Ken je nog andere formule's die je in programmavorm zou kunnen gieten?
+\end{task}
+
+\end{document}
