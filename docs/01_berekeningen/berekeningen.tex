@@ -72,6 +72,18 @@ Waarom staat er een spatie na het vraagteken in de eerste lijn code? Hoe voelt h
 Waarom staat de 'f' in het print-commando? Wat gebeurt er als je die er niet zet?
 \end{task}
 
+De stukken tekst tussen quotes (") noemen we strings. Je kan strings zowel met dubbele als enkele quotes schrijven. Dat is vooral handig als je de andere quote nodig hebt binnen je string.
+\begin{python}
+print("'t Is mooi weer vandaag!")
+print('"Goedemorgen", zei de man.')
+\end{python}
+
+\subsection{\optional Escapes}
+Er is echter een oplossing als je ze allebei zou nodig hebben:
+\begin{python}
+print('"Goedemorgen," zei de man, "\'t is mooi weer vandaag."')
+\end{python}
+Door een backslash (\textbackslash) voor een quote te zetten escapen we deze, waardoor Python de string niet afsluit. Zoals je ziet wordt dat snel nogal ingewikkeld.
 
 \section{Rekenen met Python}
 Computers zijn in de eerste plaats uitstekende rekenmachines! Laat ons eens kijken. Tip: doe dit in een REPL of worksheet, dan hoef je niet telkens 'print' te typen!
@@ -177,13 +189,51 @@ print(str(10) + str(-1))
 Kan je de vorige programma's werkende krijgen met datatype-omzettingen?
 \end{task}
 
+Nog een weetje.. Je kan strings en getallen niet optellen, maar je kan ze wel vermenigvuldigen!
+\begin{python}
+print(10 * "-")
+print(f"De bel doet tr{'i' * 20}ng")
+\end{python}
+
 \section{Oefeningen}
 \begin{task}
 Schrijf een programma om de oppervlakte van een cirkel te berekenen, gegeven de straal. Ken je nog andere formule's die je in programmavorm zou kunnen gieten?
 \end{task}
 
 \begin{task}
-Schrijf een script dat de geboortedatum van de gebruiker vraagt en de leeftijd van de gebruiker in dagen berekent. Het is voorlopig het eenvoudigst als je de geboortedatum met drie input-stappen opvraagt: de dag, de maand en het jaar. Het is ook het makkelijkst als je de datum van vandaag 'hardcode', dus rechtstreeks in het programma stopt.
+Schrijf een programma dat 5 getallen vraagt, en een histogram van deze getallen maakt. Dat ziet er dan bijvoorbeeld zo uit:
+\begin{verbatim}
+Getal 1? 1
+Getal 2? 3
+Getal 3? 8
+Getal 4? 6
+Getal 5? 4
+1 #
+3 ###
+8 ########
+6 ######
+4 ####
+\end{verbatim}
+\end{task}
+
+\begin{task}
+Wat gebeurt er als een van de getallen groter is dan 10? Kan je dit oplossen? Misschien kan je inspiratie halen uit volgend voorbeeld met extra functionaliteit van format-strings:
+\begin{python}
+aantal_visjes = 4
+print(f"{aantal_visjes:3} kleine visjes, die zwommen naar de zee")
+aantal_visjes = 37
+print(f"{aantal_visjes:3} kleine visjes, die zwommen naar de zee")
+aantal_visjes = 189
+print(f"{aantal_visjes:3} kleine visjes, die zwommen naar de zee")
+\end{python}
+\end{task}
+
+\begin{hard-task}
+Kan je dit oplossen voor nog grotere getallen? Wat als je niet op voorhand weet wat het grootste getal is dat een gebruiker gaat ingeven? Hoe ziet de grafiek er uit als die niet meer op het scherm past? Hoe zou je dat kunnen oplossen?
+\end{hard-task}
+
+\begin{task}
+Schrijf een programma dat de geboortedatum van de gebruiker vraagt en de leeftijd van de gebruiker in dagen berekent. Het is voorlopig het eenvoudigst als je de geboortedatum met drie input-stappen opvraagt: de dag, de maand en het jaar. Het is ook het makkelijkst als je de datum van vandaag 'hardcode', dus rechtstreeks in het programma stopt.
 \end{task}
 
 \begin{task}
