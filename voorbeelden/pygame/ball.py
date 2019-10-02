@@ -1,14 +1,17 @@
 import sys, pygame
 pygame.init()
 
-size = width, height = 320, 240
+size = width, height = 640, 480
 speed = [2, 2]
 black = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
 
-ball = pygame.image.load("intro_ball.gif")
+ball = pygame.image.load("intro_ball.gif").convert_alpha()
 ballrect = ball.get_rect()
+mask = pygame.Surface(ball.get_size(), pygame.SRCALPHA)
+
+i = 1
 
 clock = pygame.time.Clock()
 while 1:
@@ -23,5 +26,12 @@ while 1:
         speed[1] = -speed[1]
 
     screen.fill(black)
-    screen.blit(ball, ballrect)
+
+    mask.blit(ball, (0,0))
+    i = i + 1
+    r = abs((i % 510) - 255)
+    g = abs(((i * 2) % 510) - 255)
+    b = abs(((i * 3) % 510) - 255)
+    mask.fill((r, g, b, 255), special_flags=pygame.BLEND_RGBA_MULT)
+    screen.blit(mask, ballrect)
     pygame.display.flip()
